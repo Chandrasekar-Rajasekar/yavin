@@ -6,6 +6,13 @@
       driver: org.h2.Driver
       user: guest
       dialect: H2
+    },
+    {
+      name: DruidConnection
+      url: jdbc:avatica:remote:url=http://laughterrafter.corp.gq1.yahoo.com:8082/druid/v2/sql/avatica/
+      driver: org.apache.calcite.avatica.remote.Driver
+      user: guest
+      dialect: Druid
     }
   ]
 }

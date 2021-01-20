@@ -17,7 +17,7 @@ elide:
     defaultAsyncQueryDAO: true
   aggregation-store:
     enabled: true
-    default-dialect: H2
+    default-dialect: Druid
     enableMetaDataStore: true
   dynamic-config:
     enabled: true

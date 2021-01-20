@@ -1,0 +1,38 @@
+{
+  tables: [
+    {
+      name:  CampaignInfo
+      friendlyName: Campaign Count Info
+      table: performance_dash_fact
+      dbConnectionName: DruidConnection
+      dimensions: [
+        {
+          name: brand_id
+          friendlyName: Brand Id
+          category: Attributes
+          type: TEXT
+          definition: '{{brand_id}}'
+        }
+        {
+          name: time
+          friendlyName: Interval
+          category: Date
+          type: TIME
+          definition: '{{__time}}'
+          grain: {
+            type: DAY
+          }
+        }
+      ]
+      measures: [
+        {
+          name: campaign_count
+          friendlyName: Campaign Count
+          category: Stats
+          type: INTEGER
+          definition: "COUNT(DISTINCT {{campaign_id}})"
+        }
+      ]
+    }
+  ]
+}

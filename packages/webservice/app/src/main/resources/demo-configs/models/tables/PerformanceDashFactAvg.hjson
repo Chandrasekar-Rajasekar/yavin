@@ -1,0 +1,75 @@
+{
+  tables: [
+    {
+      name:  PerformanceDashFactAvg
+      friendlyName: Performance Dash Fact Avg
+      table: performance_dash_fact
+      dbConnectionName: DruidConnection
+      joins: [
+        {
+            name: campaignInfo
+            to: CampaignInfo
+            kind: toOne
+            type: left
+            definition: "{{time}} = {{campaignInfo.time}}"
+        }
+      ]
+      dimensions: [
+        {
+          name: age
+          friendlyName: Age
+          category: Attributes
+          type: INTEGER
+          definition: '{{age}}'
+        }
+        {
+          name: brand_id
+          friendlyName: Brand Id
+          category: Attributes
+          type: TEXT
+          definition: '{{brand_id}}'
+        }
+        {
+          name: campaign_id
+          friendlyName: Campaign Id
+          category: Attributes
+          type: TEXT
+          definition: '{{campaign_id}}'
+        }
+        {
+          name: cohort
+          friendlyName: Cohort
+          category: Attributes
+          type: INTEGER
+          definition: '{{cohort}}'
+        }
+        {
+          name: gender
+          friendlyName: Gender
+          category: Attributes
+          type: TEXT
+          definition: '{{gender}}'
+        }
+        {
+          name: time
+          friendlyName: Interval
+          category: Date
+          type: TIME
+          definition: '{{__time}}'
+          grain: {
+            type: DAY
+          }
+        }
+      ]
+      measures: [
+        {
+          name: deliversAvg
+          friendlyName: Delivers Avg
+          category: Stats
+          type: INTEGER
+          definition: "sum({{delivers}}) / {{campaignInfo.campaign_count}}"
+        }
+      ]
+    }
+  ]
+}
